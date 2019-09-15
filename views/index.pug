@@ -1,0 +1,22 @@
+extends layout
+
+block layout-content
+  div(class="well")
+    div(class="containter")
+      div(class="row")
+        div(class="col-sm-4")
+          h5= "Fat person:"
+          form
+            div(class="form-group")
+              select(name="fatty", id="", class="form-control")
+                each val in ['john' , 'terri' ]
+                  option=val
+            div(class="form-group")
+              h5= "Enter food:"
+              input(type="text", class="form-control", name="food")
+              button.btn.btn-primary(type="submit", formaction="/getfood") OK
+          h5= "Daily tally:"
+          script alert("#{data[0]}")
+          
+
+            
