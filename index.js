@@ -51,7 +51,6 @@ app.get('/getfood', (req, res) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 
     mymodel.getfood(req.query.fatty, (results) => {
-
         var myData = [];
         var displayString="";
         for(i=0; i < results.length; i++) {
@@ -60,6 +59,7 @@ app.get('/getfood', (req, res) => {
             myData.push(displayString);
         }
         res.render('index', { "title": 'Home', "data": myData, "selFatty": req.query.fatty });
+
     });
 });
 

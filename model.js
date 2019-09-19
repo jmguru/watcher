@@ -22,7 +22,6 @@ exports.getfood = function(fatty, cb) {
     //let endTime = util.format('%s 11:59:59',today);
     //var dstmt = util.format('( dt > \'%s\' AND dt < \'%s\' )',startTime,endTime);
     var myquery = util.format('SELECT dt, food from foodbase.fooddata where fatty=\'%s\' AND dt > \'%s\'',fatty,today);
-    console.log(myquery);
     connection.query(myquery, function (error, results, fields) {
         if (error) {
             throw error;
@@ -32,7 +31,6 @@ exports.getfood = function(fatty, cb) {
         cb(results,null); 
 
     });
-
 }
 
 exports.putfood = function(fatty, foodd, cb) {
@@ -48,3 +46,4 @@ exports.putfood = function(fatty, foodd, cb) {
         console.log('Todo Id:' + results.insertId);
     });
 }
+
