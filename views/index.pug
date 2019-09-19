@@ -1,0 +1,35 @@
+extends layout
+
+block layout-content
+  div(class="well")
+    div(class="container")
+      div(class="row")
+        div(class="col-sm-4")
+          form
+            div(class="form-group")
+              table
+                tr
+                  td(height="50px",colspan="2",align="center")
+                    div(class="panel panel-default")
+                      div(class="panel-body")
+                        h3 Fatwatcher
+                tr
+                  td(height="50px")
+                    select(name="fatty", id="", class="form-control")
+                      each val in ['john' , 'terri' ]
+                        - if(selFatty===val)
+                          option(selected=true)=val
+                        - else
+                          option=val
+                  td(height="50px")
+                    button.btn.btn-primary(type="submit", formaction="/getfood") select user
+                tr
+                  td(height="50px")
+                    input(name="foodtext", type="text", class="form-control" id="")
+                  td(height="50px")
+                    button.btn.btn-primary(type="submit", formaction="/submit") Enter food
+          h5= "Daily tally:"
+          ul
+          - if (data && data.length)
+            - for(i=0; i<data.length; i++)
+              li= data[i]

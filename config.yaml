@@ -1,0 +1,7 @@
+---
+dbHost: 192.168.1.221
+dbUser: root
+dbPass: '1234'
+dbName: foodbase
+tName: fooddata
+appPort: '2115'
