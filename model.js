@@ -1,4 +1,4 @@
-// Need to create schema first fatty
+// model.js
 const mysql      = require('mysql');
 const util       = require('util');
 const moment     = require('moment');
@@ -18,15 +18,10 @@ var connection = mysql.createConnection({
  
 exports.getfood = function(fatty, cb) {
     let today = moment().format('YYYY-MM-DD');
-    //let startTime = util.format('%s 00:00:00',today);
-    //let endTime = util.format('%s 11:59:59',today);
-    //var dstmt = util.format('( dt > \'%s\' AND dt < \'%s\' )',startTime,endTime);
     var myquery = util.format('SELECT dt, food from foodbase.fooddata where fatty=\'%s\' AND dt > \'%s\'',fatty,today);
     connection.query(myquery, function (error, results, fields) {
         if (error) {
             throw error;
-            connection.end();
-            return(err);
         }
         cb(results,null); 
 
@@ -34,16 +29,12 @@ exports.getfood = function(fatty, cb) {
 }
 
 exports.putfood = function(fatty, foodd, cb) {
-    //let today = moment(new Date()).format('YYYY-MM-DD HH:MM:SS');
     let today = 'now()';
     const stmt = util.format('INSERT INTO %s(fatty, dt, food) VALUES (\'%s\',%s,\'%s\')', tName, fatty, today, foodd);
-    console.log(stmt);
-    // execute the insert statment
     connection.query(stmt, (err, results, fields) => {
         if (err) {
             return console.error(err.message);
         }
-        console.log('Todo Id:' + results.insertId);
     });
 }
 

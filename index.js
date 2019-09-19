@@ -30,7 +30,6 @@ app.get('/submit', (req, res) => {
         console.log('Data inserted.');
   });
 
-  // Refresh with new item
   mymodel.getfood(req.query.fatty, (results) => {
 
     var myData = [];
