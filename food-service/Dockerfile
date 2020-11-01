@@ -1,12 +1,12 @@
-FROM node:8
+FROM hypriot/rpi-node:8
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
+
+RUN npm install
 
 EXPOSE 2115
 CMD [ "node", "index.js" ]
