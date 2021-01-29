@@ -85,6 +85,6 @@ kubectl apply -f app
 ```
 # oc get routes
 ```
-- Now you can navigate to http://HOST:PORT
+- Now you can navigate to http://HOST
 
   
