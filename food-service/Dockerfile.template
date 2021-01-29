@@ -1,4 +1,4 @@
-FROM node:8
+FROM _NODEVERSION_
 
 WORKDIR /usr/src/app
 
