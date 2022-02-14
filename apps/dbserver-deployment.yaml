@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dbserver
+  name: dbserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: dbserver
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: dbserver
+    spec:
+      containers:
+        - env:
+            - name: MARIADB_DATABASE
+              value: foodbase
+            - name: MARIADB_HOME
+              value: /var/lib/mysql
+            - name: MARIADB_ROOT_PASSWORD
+              value: "1234"
+          image: jmguru/watcher_dbserver:latest
+          imagePullPolicy: Always
+          imagePullSecrets:
+            - name: watcher-pull-secret
+          name: dbserver
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+          resources: {}
+      restartPolicy: Always
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+status: {}
